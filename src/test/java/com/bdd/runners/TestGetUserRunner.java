@@ -12,5 +12,5 @@ import org.junit.runner.RunWith;
         stepNotifications = true
 )
 
-public class TestGetRunner {
+public class TestGetUserRunner {
 }
