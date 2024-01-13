@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.api.utils.Constants.*;
+import static com.api.utils.Constants.JSON_FORMAT;
+import static com.api.utils.Constants.TEMPLATES_PATH;
 
 public class TemplateUtil {
 
@@ -43,31 +44,26 @@ public class TemplateUtil {
     public static String mergeWithFieldsFrom(String templateFile, Map<String, String> fieldValues) {
         Template template = getTemplate(templateFile);
         Writer writer = new StringWriter();
-
         try {
             template.process(fieldValues, writer);
         } catch (TemplateException | IOException e) {
             throw new IllegalStateException("Failed to merge test data template", e);
         }
-
         return writer.toString();
     }
 
     private static MultiTemplateLoader createRecursiveTemplateLoader(String basePath) throws IOException {
         List<FileTemplateLoader> fileTemplateLoaders = new ArrayList<>();
         List<File> templateFiles = findTemplateFiles(new File(basePath));
-
         for (File templateFile : templateFiles) {
             fileTemplateLoaders.add(new FileTemplateLoader(templateFile.getParentFile()));
         }
-
         return new MultiTemplateLoader(fileTemplateLoaders.toArray(new FileTemplateLoader[0]));
     }
 
     private static List<File> findTemplateFiles(File baseDir) {
         List<File> templateFiles = new ArrayList<>();
         File[] files = baseDir.listFiles();
-
         if (files != null) {
             for (File file : files) {
                 if (file.isDirectory()) {
@@ -77,7 +73,6 @@ public class TemplateUtil {
                 }
             }
         }
-
         return templateFiles;
     }
 }

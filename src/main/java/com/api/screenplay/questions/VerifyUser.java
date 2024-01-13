@@ -5,7 +5,7 @@ import net.serenitybdd.screenplay.rest.questions.ResponseConsequence;
 
 import static org.hamcrest.Matchers.*;
 
-public class Verify {
+public class VerifyUser {
 
     private static final String SUPPORT_URL = "https://reqres.in/#support-heading";
     private static final String SUPPORT_TEXT = "To keep ReqRes free, contributions towards server costs are appreciated!";

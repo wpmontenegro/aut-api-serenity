@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        features = "src/test/resources/features/getExample.feature",
+        features = "src/test/resources/features/getUserExample.feature",
         glue = {"com.bdd.stepsdefinitions"},
         stepNotifications = true
 )

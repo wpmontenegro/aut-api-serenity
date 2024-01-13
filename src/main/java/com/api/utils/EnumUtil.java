@@ -8,7 +8,7 @@ public class EnumUtil {
         try {
             return ServiceBuilder.valueOf(serviceName.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new AutomationException("Service not found: " + serviceName);
+            throw new AutomationException("Service not found: " + serviceName, e);
         }
     }
 }

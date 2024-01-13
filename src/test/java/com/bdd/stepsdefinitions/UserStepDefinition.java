@@ -1,6 +1,6 @@
 package com.bdd.stepsdefinitions;
 
-import com.api.screenplay.questions.Verify;
+import com.api.screenplay.questions.VerifyUser;
 import com.api.screenplay.tasks.Load;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -28,7 +28,7 @@ public class UserStepDefinition {
     @And("I validate fields of get user response")
     public void iValidateFieldsOfGetUserResponse(List<Map<String, String>> testDataList) {
         theActorInTheSpotlight().wasAbleTo(Load.testData(testDataList));
-        theActorInTheSpotlight().should(Verify.responseGetUser());
+        theActorInTheSpotlight().should(VerifyUser.responseGetUser());
     }
 
     @Given("I load data user to create")
@@ -43,6 +43,6 @@ public class UserStepDefinition {
 
     @And("I validate fields of post user response")
     public void iValidateFieldsOfPostUserResponse() {
-        theActorInTheSpotlight().should(Verify.responsePostUser());
+        theActorInTheSpotlight().should(VerifyUser.responsePostUser());
     }
 }
