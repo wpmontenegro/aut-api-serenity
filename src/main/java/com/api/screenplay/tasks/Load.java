@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class Load {
 
-    private static void loadData(List<Map<String, String>> data, Map<String, Object> targetMap) {
+    private static void loadData(List<Map<String, String>> data, Map<String, String> targetMap) {
         Set<Map.Entry<String, String>> dataSet = data.get(0).entrySet();
         targetMap.putAll(dataSet.stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
@@ -21,6 +21,14 @@ public class Load {
         return Task.where(actor -> {
             if (!testDataList.isEmpty()) {
                 loadData(testDataList, TestData.getTestData());
+            }
+        });
+    }
+
+    public static Performable bodyData(List<Map<String, String>> bodyDataList) {
+        return Task.where(actor -> {
+            if (!bodyDataList.isEmpty()) {
+                loadData(bodyDataList, TestData.getBodyData());
             }
         });
     }

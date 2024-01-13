@@ -4,7 +4,7 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 
-import static com.api.utils.Constants.SCHEMAS_PATH;
+import static com.api.utils.Constants.SCHEMAS_FORMAT;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
 
 public class Schema implements Question<Boolean> {
@@ -23,8 +23,7 @@ public class Schema implements Question<Boolean> {
     public Boolean answeredBy(Actor actor) {
         actor.should(seeThatResponse("Validation of Response Schema",
                 validatableResponse -> validatableResponse
-                        .assertThat()
-                        .body(JsonSchemaValidator.matchesJsonSchemaInClasspath(String.format(SCHEMAS_PATH, schema)))
+                        .body(JsonSchemaValidator.matchesJsonSchemaInClasspath(String.format(SCHEMAS_FORMAT, schema)))
         ));
         return true;
     }

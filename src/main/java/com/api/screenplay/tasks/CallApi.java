@@ -3,6 +3,7 @@ package com.api.screenplay.tasks;
 import com.api.screenplay.interactions.Api;
 import com.api.utils.EnumUtil;
 import com.api.utils.ServiceBuilder;
+import com.api.utils.TemplateUtil;
 import io.restassured.http.Method;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -27,15 +28,18 @@ public class CallApi implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         ServiceBuilder service = EnumUtil.searchServiceByName(serviceName);
+        String body;
         switch (method) {
             case GET:
                 actor.attemptsTo(Api.get(service.getBaseUrl(), service.getPath(), getHeaders(), getPathParams(), getQueryParams()));
                 break;
             case POST:
-                actor.attemptsTo(Api.post(service.getBaseUrl(), service.getPath(), getHeaders(), ""));
+                body = TemplateUtil.mergeWithFieldsFrom(serviceName, getBodyData());
+                actor.attemptsTo(Api.post(service.getBaseUrl(), service.getPath(), getHeaders(), body));
                 break;
             case PUT:
-                actor.attemptsTo(Api.put(service.getBaseUrl(), service.getPath(), getHeaders(), ""));
+                body = TemplateUtil.mergeWithFieldsFrom(serviceName, getBodyData());
+                actor.attemptsTo(Api.put(service.getBaseUrl(), service.getPath(), getHeaders(), body));
                 break;
             case DELETE:
                 actor.attemptsTo(Api.delete(service.getBaseUrl(), service.getPath(), getHeaders()));
