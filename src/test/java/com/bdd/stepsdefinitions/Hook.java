@@ -1,9 +1,9 @@
 package com.bdd.stepsdefinitions;
 
+import com.api.screenplay.models.TestData;
 import io.cucumber.java.Before;
 import net.serenitybdd.model.environment.EnvironmentSpecificConfiguration;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import net.thucydides.model.util.EnvironmentVariables;
 
 
@@ -18,7 +18,8 @@ public class Hook {
         setTheStage(new OnlineCast());
         theActorCalled("User");
 
+        TestData.clear();
         String apiBaseUrl = EnvironmentSpecificConfiguration.from(environmentVariables).getProperty("base.url");
-        theActorInTheSpotlight().whoCan(CallAnApi.at(apiBaseUrl));
+        TestData.getTestData().put("apiBase", apiBaseUrl);
     }
 }

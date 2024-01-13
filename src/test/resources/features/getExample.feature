@@ -6,5 +6,5 @@ Feature: Information of individual user
       | 1  |
     When I make the user query
     Then I should see the status code 200
-    And I validate schema response "GetExampleSchema"
-    And I validate fields of get response
+    And I validate schema response "GetUserSchema"
+    And I validate fields of user response

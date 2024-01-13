@@ -1,6 +1,8 @@
 buildscript {
     ext {
         serenityVersion = '4.0.30'
+        slf4jVersion = '2.0.10'
+        restAssuredVersion = '5.4.0'
     }
     repositories {
         mavenCentral()
@@ -10,20 +12,16 @@ buildscript {
     }
 }
 
-plugins {
+plugins{
     id 'java'
 }
+apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
 
 group = 'com.willoh.automation'
 version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-}
-
-ext {
-    slf4jVersion = '2.0.10'
-    restAssuredVersion = '5.4.0'
 }
 
 dependencies {
