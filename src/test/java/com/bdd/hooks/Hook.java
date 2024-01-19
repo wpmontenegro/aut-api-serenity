@@ -1,4 +1,4 @@
-package com.bdd.stepsdefinitions;
+package com.bdd.hooks;
 
 import com.api.screenplay.models.TestData;
 import io.cucumber.java.Before;

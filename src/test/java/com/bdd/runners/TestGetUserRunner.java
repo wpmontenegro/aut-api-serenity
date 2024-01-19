@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         features = "src/test/resources/features/getUserExample.feature",
-        glue = {"com.bdd.stepsdefinitions"},
+        glue = {"com.bdd.stepsdefinitions", "com.bdd.hooks"},
         stepNotifications = true
 )
 
