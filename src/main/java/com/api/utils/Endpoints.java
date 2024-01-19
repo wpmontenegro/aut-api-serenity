@@ -1,6 +1,6 @@
 package com.api.utils;
 
-import com.api.screenplay.models.TestData;
+import com.api.models.TestData;
 
 public class Endpoints {
     public static final String API_BASE = TestData.getTestData().get("apiBase");

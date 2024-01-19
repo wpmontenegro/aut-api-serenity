@@ -1,7 +1,7 @@
 package com.bdd.stepsdefinitions;
 
-import com.api.screenplay.questions.VerifyUser;
-import com.api.screenplay.tasks.Load;
+import com.api.questions.VerifyUser;
+import com.api.tasks.Load;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;

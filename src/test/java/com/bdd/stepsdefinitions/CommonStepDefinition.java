@@ -1,8 +1,8 @@
 package com.bdd.stepsdefinitions;
 
-import com.api.screenplay.questions.Schema;
-import com.api.screenplay.questions.StatusCode;
-import com.api.screenplay.tasks.CallApi;
+import com.api.questions.Schema;
+import com.api.questions.StatusCode;
+import com.api.tasks.CallApi;
 import io.cucumber.java.en.Then;
 
 import static io.restassured.http.Method.GET;

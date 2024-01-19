@@ -1,4 +1,4 @@
-package com.api.screenplay.models;
+package com.api.models;
 
 import java.util.HashMap;
 import java.util.Map;

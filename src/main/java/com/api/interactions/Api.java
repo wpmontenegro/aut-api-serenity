@@ -1,4 +1,4 @@
-package com.api.screenplay.interactions;
+package com.api.interactions;
 
 import com.api.exceptions.AutomationException;
 import io.restassured.http.ContentType;

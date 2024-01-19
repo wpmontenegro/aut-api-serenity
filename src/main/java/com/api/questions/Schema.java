@@ -1,4 +1,4 @@
-package com.api.screenplay.questions;
+package com.api.questions;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.screenplay.Actor;

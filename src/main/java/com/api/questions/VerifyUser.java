@@ -1,6 +1,6 @@
-package com.api.screenplay.questions;
+package com.api.questions;
 
-import com.api.screenplay.models.TestData;
+import com.api.models.TestData;
 import net.serenitybdd.screenplay.rest.questions.ResponseConsequence;
 
 import static org.hamcrest.Matchers.*;

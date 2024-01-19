@@ -1,6 +1,6 @@
 package com.bdd.hooks;
 
-import com.api.screenplay.models.TestData;
+import com.api.models.TestData;
 import io.cucumber.java.Before;
 import net.serenitybdd.model.environment.EnvironmentSpecificConfiguration;
 import net.serenitybdd.screenplay.actors.OnlineCast;

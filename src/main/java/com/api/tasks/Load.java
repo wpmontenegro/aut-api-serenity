@@ -1,6 +1,6 @@
-package com.api.screenplay.tasks;
+package com.api.tasks;
 
-import com.api.screenplay.models.TestData;
+import com.api.models.TestData;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 
