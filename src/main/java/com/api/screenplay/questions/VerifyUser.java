@@ -9,6 +9,7 @@ public class VerifyUser {
 
     private static final String SUPPORT_URL = "https://reqres.in/#support-heading";
     private static final String SUPPORT_TEXT = "To keep ReqRes free, contributions towards server costs are appreciated!";
+    private static final String DATE_REGEX = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}Z$";
 
     public static ResponseConsequence responseGetUser() {
         return ResponseConsequence.seeThatResponse("Validate Fields Get User",
@@ -29,7 +30,7 @@ public class VerifyUser {
                         .body("name", equalTo(TestData.getBodyData().get("name")))
                         .body("job", equalTo(TestData.getBodyData().get("job")))
                         .body("id", not(emptyString()))
-                        .body("createdAt", not(emptyString()))
+                        .body("createdAt", matchesRegex(DATE_REGEX))
         );
     }
 }
