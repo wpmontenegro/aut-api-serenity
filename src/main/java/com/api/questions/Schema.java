@@ -22,7 +22,7 @@ public class Schema implements Question<Boolean> {
     @Override
     public Boolean answeredBy(Actor actor) {
         actor.should(seeThatResponse("Validation of Response Schema",
-                validatableResponse -> validatableResponse
+                validateResponse -> validateResponse
                         .body(JsonSchemaValidator.matchesJsonSchemaInClasspath(String.format(SCHEMA_FORMAT, schema)))
         ));
         return true;

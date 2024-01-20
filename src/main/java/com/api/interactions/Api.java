@@ -21,12 +21,12 @@ public class Api implements Interaction {
     private final String baseUrl;
     private final String resource;
     private final Method method;
-    private final Map<String, Object> headers;
+    private final Map<String, String> headers;
     private final String body;
-    private final Map<String, Object> pathParams;
-    private final Map<String, Object> queryParams;
+    private final Map<String, String> pathParams;
+    private final Map<String, String> queryParams;
 
-    public Api(String baseUrl, String resource, Method method, Map<String, Object> headers, String body, Map<String, Object> pathParams, Map<String, Object> queryParams) {
+    public Api(String baseUrl, String resource, Method method, Map<String, String> headers, String body, Map<String, String> pathParams, Map<String, String> queryParams) {
         this.baseUrl = baseUrl;
         this.resource = resource;
         this.method = method;
@@ -36,19 +36,19 @@ public class Api implements Interaction {
         this.queryParams = queryParams;
     }
 
-    public static Api get(String baseUrl, String resource, Map<String, Object> headers, Map<String, Object> pathParams, Map<String, Object> queryParams) {
+    public static Api get(String baseUrl, String resource, Map<String, String> headers, Map<String, String> pathParams, Map<String, String> queryParams) {
         return Tasks.instrumented(Api.class, baseUrl, resource, GET, headers, null, pathParams, queryParams);
     }
 
-    public static Api post(String baseUrl, String resource, Map<String, Object> headers, String body) {
+    public static Api post(String baseUrl, String resource, Map<String, String> headers, String body) {
         return Tasks.instrumented(Api.class, baseUrl, resource, POST, headers, body, null, null);
     }
 
-    public static Api put(String baseUrl, String resource, Map<String, Object> headers, String body) {
+    public static Api put(String baseUrl, String resource, Map<String, String> headers, String body) {
         return Tasks.instrumented(Api.class, baseUrl, resource, PUT, headers, body, null, null);
     }
 
-    public static Api delete(String baseUrl, String resource, Map<String, Object> headers) {
+    public static Api delete(String baseUrl, String resource, Map<String, String> headers) {
         return Tasks.instrumented(Api.class, baseUrl, resource, DELETE, headers, null, null, null);
     }
 
