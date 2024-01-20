@@ -1,7 +1,10 @@
 package com.api.utils;
 
+import lombok.Getter;
+
 import static com.api.utils.Endpoints.*;
 
+@Getter
 public enum ServiceBuilder {
     USERS(API_BASE, PATH_USERS),
     SINGLE_USER(API_BASE, PATH_SINGLE_USER);
@@ -12,13 +15,5 @@ public enum ServiceBuilder {
     ServiceBuilder(String baseUrl, String path) {
         this.baseUrl = baseUrl;
         this.path = path;
-    }
-
-    public String getBaseUrl() {
-        return baseUrl;
-    }
-
-    public String getPath() {
-        return path;
     }
 }

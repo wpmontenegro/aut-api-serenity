@@ -1,7 +1,7 @@
 package com.api.tasks;
 
-import com.api.models.TestData;
 import com.api.interactions.Api;
+import com.api.models.TestData;
 import com.api.utils.EnumUtil;
 import com.api.utils.ServiceBuilder;
 import com.api.utils.TemplateUtil;

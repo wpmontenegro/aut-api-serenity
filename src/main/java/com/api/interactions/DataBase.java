@@ -20,17 +20,20 @@ public class DataBase {
         String user = System.getenv("DB_USER");
         String password = System.getenv("DB_PASSWORD");
 
+        if (urlTemplate == null || user == null || password == null) {
+            throw new AutomationException("Missing required environment variables for database connection");
+        }
         try {
             LOGGER.debug("Connecting to database with URL: {}", String.format(urlTemplate, nameDB));
             return Jdbi.create(String.format(urlTemplate, nameDB), user, password);
         } catch (Exception e) {
-            throw new AutomationException("An error occurred while connecting to the database: ", e);
+            throw new AutomationException("An error occurred while connecting to the database", e);
         }
     }
 
     public static <T> T executeQuery(String nameDB,
                                      String nameQuery,
-                                     Map<String, Object> parameters,
+                                     Map<String, String> parameters,
                                      Class<T> className) {
         T queryResult = null;
         try (Handle handle = openConnection(nameDB).open()) {
@@ -41,7 +44,7 @@ public class DataBase {
                 );
             }
         } catch (Exception e) {
-            LOGGER.error("An error occurred while performing the query: ", e);
+            LOGGER.error("An error occurred while performing the query: {}", e.getMessage());
         }
         return queryResult;
     }
@@ -55,7 +58,7 @@ public class DataBase {
                 rowCounter = update.execute();
             }
         } catch (Exception e) {
-            LOGGER.error("An error occurred while performing the query: ", e);
+            LOGGER.error("An error occurred while performing the update: {}", e.getMessage());
         }
         return rowCounter;
     }

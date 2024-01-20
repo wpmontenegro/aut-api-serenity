@@ -41,7 +41,7 @@ public class TemplateUtil {
         }
     }
 
-    public static String mergeWithFieldsFrom(String templateFile, Map<String, Object> fieldValues) {
+    public static String mergeWithFieldsFrom(String templateFile, Map<String, String> fieldValues) {
         Template template = getTemplate(templateFile);
         Writer writer = new StringWriter();
         try {

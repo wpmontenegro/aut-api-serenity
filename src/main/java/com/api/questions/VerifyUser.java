@@ -14,7 +14,7 @@ public class VerifyUser {
     public static ResponseConsequence responseGetUser() {
         return ResponseConsequence.seeThatResponse("Validate Fields Get User",
                 validateResponse -> validateResponse
-                        .body("data.id", equalTo(Integer.parseInt(TestData.getTestData().get("id").toString())))
+                        .body("data.id", equalTo(Integer.parseInt(TestData.getTestData().get("id"))))
                         .body("data.email", equalTo(TestData.getTestData().get("email")))
                         .body("data.first_name", equalTo(TestData.getTestData().get("first_name")))
                         .body("data.last_name", equalTo(TestData.getTestData().get("last_name")))

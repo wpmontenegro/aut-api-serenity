@@ -1,8 +1,8 @@
 package com.bdd.stepsdefinitions;
 
 import com.api.models.TestData;
-import com.api.questions.VerifyUser;
 import com.api.questions.QueryUser;
+import com.api.questions.VerifyUser;
 import com.api.tasks.Load;
 import com.api.tasks.Save;
 import io.cucumber.java.en.And;
@@ -50,7 +50,6 @@ public class UserStepDefinition {
     public void iValidateFieldsOfPostUserResponse() {
         theActorInTheSpotlight().should(VerifyUser.responsePostUser());
         theActorInTheSpotlight().attemptsTo(Save.userId());
-        // Verify with Example DataBase
         theActorInTheSpotlight().should(seeThat(QueryUser.validateName(), equalTo(TestData.getBodyData().get("name"))));
     }
 }
