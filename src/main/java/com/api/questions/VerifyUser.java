@@ -13,8 +13,8 @@ public class VerifyUser {
 
     public static ResponseConsequence responseGetUser() {
         return ResponseConsequence.seeThatResponse("Validate Fields Get User",
-                validatableResponse -> validatableResponse
-                        .body("data.id", equalTo(Integer.parseInt(TestData.getTestData().get("id"))))
+                validateResponse -> validateResponse
+                        .body("data.id", equalTo(Integer.parseInt(TestData.getTestData().get("id").toString())))
                         .body("data.email", equalTo(TestData.getTestData().get("email")))
                         .body("data.first_name", equalTo(TestData.getTestData().get("first_name")))
                         .body("data.last_name", equalTo(TestData.getTestData().get("last_name")))
@@ -26,7 +26,7 @@ public class VerifyUser {
 
     public static ResponseConsequence responsePostUser() {
         return ResponseConsequence.seeThatResponse("Validate Fields Post User",
-                validatableResponse -> validatableResponse
+                validateResponse -> validateResponse
                         .body("name", equalTo(TestData.getBodyData().get("name")))
                         .body("job", equalTo(TestData.getBodyData().get("job")))
                         .body("id", not(emptyString()))

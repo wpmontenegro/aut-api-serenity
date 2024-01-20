@@ -4,28 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TestData {
-    private static final Map<String, String> testData = new HashMap<>();
-    private static final Map<String, String> headers = new HashMap<>();
-    private static final Map<String, String> bodyData = new HashMap<>();
-    private static final Map<String, String> pathParams = new HashMap<>();
-    private static final Map<String, String> queryParams = new HashMap<>();
+    private static final Map<String, Object> testData = new HashMap<>();
+    private static final Map<String, Object> headers = new HashMap<>();
+    private static final Map<String, Object> bodyData = new HashMap<>();
+    private static final Map<String, Object> pathParams = new HashMap<>();
+    private static final Map<String, Object> queryParams = new HashMap<>();
 
-    public static Map<String, String> getTestData() {
+    public static Map<String, Object> getTestData() {
         return testData;
     }
 
-    public static Map<String, String> getHeaders() {
+    public static Map<String, Object> getHeaders() {
         return headers;
     }
-    public static Map<String, String> getBodyData() {
+    public static Map<String, Object> getBodyData() {
         return bodyData;
     }
 
-    public static Map<String, String> getPathParams() {
+    public static Map<String, Object> getPathParams() {
         return pathParams;
     }
 
-    public static Map<String, String> getQueryParams() {
+    public static Map<String, Object> getQueryParams() {
         return queryParams;
     }
 

@@ -48,7 +48,7 @@ public class DataBase {
 
     public static int executeUpdate(String nameDB,
                                     String nameUpdate,
-                                    Map<String, Object> parameters) {
+                                    Map<String, String> parameters) {
         int rowCounter = 0;
         try (Handle handle = openConnection(nameDB).open()) {
             try (Update update = handle.createUpdate(nameUpdate).bindMap(parameters)) {

@@ -1,7 +1,10 @@
 package com.bdd.stepsdefinitions;
 
+import com.api.models.TestData;
 import com.api.questions.VerifyUser;
+import com.api.questions.QueryUser;
 import com.api.tasks.Load;
+import com.api.tasks.Save;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
@@ -11,7 +14,9 @@ import java.util.Map;
 
 import static com.bdd.stepsdefinitions.CommonStepDefinition.callGetService;
 import static com.bdd.stepsdefinitions.CommonStepDefinition.callPostService;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static org.hamcrest.Matchers.equalTo;
 
 public class UserStepDefinition {
 
@@ -44,5 +49,8 @@ public class UserStepDefinition {
     @And("I validate fields of post user response")
     public void iValidateFieldsOfPostUserResponse() {
         theActorInTheSpotlight().should(VerifyUser.responsePostUser());
+        theActorInTheSpotlight().attemptsTo(Save.userId());
+        // Verify with Example DataBase
+        theActorInTheSpotlight().should(seeThat(QueryUser.validateName(), equalTo(TestData.getBodyData().get("name"))));
     }
 }
