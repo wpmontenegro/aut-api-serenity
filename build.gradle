@@ -4,6 +4,8 @@ buildscript {
         slf4jVersion = '2.0.10'
         restAssuredVersion = '5.4.0'
         jdbiVersion = '3.43.0'
+        lombokVersion = '1.18.30'
+        postgresqlVersion = '42.7.1'
     }
     repositories {
         mavenCentral()
@@ -34,6 +36,9 @@ dependencies {
     implementation "org.slf4j:slf4j-simple:${slf4jVersion}"
     implementation "io.rest-assured:json-schema-validator:${restAssuredVersion}"
     implementation "org.jdbi:jdbi3-core:${jdbiVersion}"
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    implementation "org.postgresql:postgresql:${postgresqlVersion}"
 }
 
 test {

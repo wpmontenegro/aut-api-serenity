@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class Load {
 
-    private static void loadData(List<Map<String, String>> data, Map<String, String> targetMap) {
+    private static void loadData(List<Map<String, String>> data, Map<String, Object> targetMap) {
         Set<Map.Entry<String, String>> dataSet = data.get(0).entrySet();
         targetMap.putAll(dataSet.stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));

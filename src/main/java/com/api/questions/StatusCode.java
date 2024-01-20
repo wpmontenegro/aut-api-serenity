@@ -19,7 +19,7 @@ public class StatusCode implements Question<Boolean> {
     @Override
     public Boolean answeredBy(Actor actor) {
         actor.should(seeThatResponse("Validation of Response Status Code",
-                validatableResponse -> validatableResponse
+                validateResponse -> validateResponse
                         .statusCode(code)
         ));
         return true;
