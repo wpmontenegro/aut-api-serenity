@@ -42,7 +42,7 @@ public class CallApi implements Task {
                 actor.attemptsTo(Api.put(service.getBaseUrl(), service.getPath(), TestData.getHeaders(), body));
                 break;
             case DELETE:
-                actor.attemptsTo(Api.delete(service.getBaseUrl(), service.getPath(), TestData.getHeaders()));
+                actor.attemptsTo(Api.delete(service.getBaseUrl(), service.getPath(), TestData.getHeaders(), TestData.getPathParams(), TestData.getQueryParams()));
                 break;
         }
     }
