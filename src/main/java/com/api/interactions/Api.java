@@ -1,6 +1,7 @@
 package com.api.interactions;
 
 import com.api.exceptions.AutomationException;
+import com.api.scenario.AttachReport;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import net.serenitybdd.rest.SerenityRest;
@@ -13,6 +14,7 @@ import net.serenitybdd.screenplay.rest.interactions.Get;
 import net.serenitybdd.screenplay.rest.interactions.Post;
 import net.serenitybdd.screenplay.rest.interactions.Put;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.http.Method.*;
@@ -41,15 +43,15 @@ public class Api implements Interaction {
     }
 
     public static Api post(String baseUrl, String resource, Map<String, String> headers, String body) {
-        return Tasks.instrumented(Api.class, baseUrl, resource, POST, headers, body, null, null);
+        return Tasks.instrumented(Api.class, baseUrl, resource, POST, headers, body, new HashMap<>(), new HashMap<>());
     }
 
     public static Api put(String baseUrl, String resource, Map<String, String> headers, String body) {
-        return Tasks.instrumented(Api.class, baseUrl, resource, PUT, headers, body, null, null);
+        return Tasks.instrumented(Api.class, baseUrl, resource, PUT, headers, body, new HashMap<>(), new HashMap<>());
     }
 
-    public static Api delete(String baseUrl, String resource, Map<String, String> headers) {
-        return Tasks.instrumented(Api.class, baseUrl, resource, DELETE, headers, null, null, null);
+    public static Api delete(String baseUrl, String resource, Map<String, String> headers, Map<String, String> pathParams, Map<String, String> queryParams) {
+        return Tasks.instrumented(Api.class, baseUrl, resource, DELETE, headers, null, pathParams, queryParams);
     }
 
     @Override
@@ -87,6 +89,37 @@ public class Api implements Interaction {
             );
             default -> throw new AutomationException("Unsupported HTTP method: " + method);
         }
-        SerenityRest.lastResponse().prettyPrint();
+        actor.attemptsTo(AttachReport.loadEvidence(getRequestDetails(), getResponseDetails()));
+    }
+
+    private String getRequestDetails() {
+        String separator = "----------------------------------------------------------------";
+        return "REQUEST" + "\n"
+                + "Url: " + baseUrl + resource + "\n"
+                + separator + "\n"
+                + "REQUEST HEADERS" + "\n"
+                + headers.toString() + "\n"
+                + separator + "\n"
+                + "REQUEST QUERY PARAMETERS" + "\n"
+                + queryParams.toString() + "\n"
+                + separator + "\n"
+                + "REQUEST PATH PARAMETERS" + "\n"
+                + pathParams + "\n"
+                + separator + "\n"
+                + "REQUEST BODY" + "\n"
+                + body + "\n";
+    }
+
+    private String getResponseDetails() {
+        String separator = "----------------------------------------------------------------";
+        return "RESPONSE" + "\n"
+                + "Status Code: " + SerenityRest.lastResponse().getStatusCode() + "\n"
+                + "Content Type: " + SerenityRest.lastResponse().getContentType() + "\n"
+                + separator + "\n"
+                + "RESPONSE HEADERS " + "\n"
+                + SerenityRest.lastResponse().getHeaders() + "\n"
+                + separator + "\n"
+                + "RESPONSE BODY" + "\n"
+                + SerenityRest.lastResponse().getBody().prettyPrint() + "\n";
     }
 }

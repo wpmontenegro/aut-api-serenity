@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
+        plugin = {"json:target/cucumber/cucumber.json"},
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         features = "src/test/resources/features/getUserExample.feature",
         glue = {"com.bdd.stepsdefinitions", "com.bdd.hooks"},
