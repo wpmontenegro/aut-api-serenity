@@ -14,13 +14,13 @@ before_script:
 build:
   stage: build
   script: 
-    - gradlew build
+    - ./gradlew build
 
 test:
   stage: test
   script: 
     - echo "Running API test cases with Serenity-BDD"
-    - gradlew clean test -Denv=qa
+    - ./gradlew clean test -Denv=qa
     - zip -r serenity-reports.zip target/site/serenity
     
   artifacts:
