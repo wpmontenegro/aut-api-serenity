@@ -6,9 +6,8 @@ stages:
 
 variables:
   ENVIRONMENT:
-    value: "default"
+    value: "qa"
     options:
-      - "default"
       - "dev"
       - "qa"
     description: "Environment for test execution"
