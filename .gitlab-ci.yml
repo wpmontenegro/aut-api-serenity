@@ -1,0 +1,31 @@
+image: gradle:alpine
+
+stages:
+  - build
+  - test
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+before_script:
+  - GRADLE_USER_HOME="$(pwd)/.gradle"
+  - export GRADLE_USER_HOME
+
+build:
+  stage: build
+  script: 
+    - gradlew build
+
+test:
+  stage: test
+  script: 
+    - echo "Running API test cases with Serenity-BDD"
+    - gradlew clean test -Denv=qa
+    - zip -r serenity-reports.zip target/site/serenity
+    
+  artifacts:
+    when: always
+    name: "Serenity API Report"
+    paths:
+    - serenity-reports.zip
+    expire_in: 24 h
