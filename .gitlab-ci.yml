@@ -5,7 +5,6 @@ stages:
   - test
 
 variables:
-  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
   ENVIRONMENT:
     value: "qa"
     options:
@@ -27,7 +26,7 @@ test:
   stage: test
   script: 
     - echo "Running API test cases with Serenity-BDD"
-    - ./gradlew clean test -Denv=qa
+    - ./gradlew clean test -Denv=$ENVIRONMENT
     
   artifacts:
     when: always
