@@ -6,6 +6,12 @@ stages:
 
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+  ENVIRONMENT:
+    value: "qa"
+    options:
+      - "dev"
+      - "qa"
+    description: "Environment for test execution"
 
 before_script:
   - GRADLE_USER_HOME="$(pwd)/.gradle"
