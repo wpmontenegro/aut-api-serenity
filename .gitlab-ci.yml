@@ -6,8 +6,9 @@ stages:
 
 variables:
   ENVIRONMENT:
-    value: "qa"
+    value: "default"
     options:
+      - "default"
       - "dev"
       - "qa"
     description: "Environment for test execution"
@@ -26,7 +27,7 @@ test:
   stage: test
   script: 
     - echo "Running API test cases with Serenity-BDD"
-    - ./gradlew clean test -Denv=$ENVIRONMENT
+    - ./gradlew clean test -Denvironment=$ENVIRONMENT
     
   artifacts:
     when: always
