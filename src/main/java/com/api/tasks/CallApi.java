@@ -39,7 +39,7 @@ public class CallApi implements Task {
                 break;
             case PUT:
                 body = TemplateUtil.mergeWithFieldsFrom(serviceName, TestData.getBodyData());
-                actor.attemptsTo(Api.put(service.getBaseUrl(), service.getPath(), TestData.getHeaders(), body));
+                actor.attemptsTo(Api.put(service.getBaseUrl(), service.getPath(), TestData.getHeaders(), TestData.getPathParams(), body));
                 break;
             case DELETE:
                 actor.attemptsTo(Api.delete(service.getBaseUrl(), service.getPath(), TestData.getHeaders(), TestData.getPathParams(), TestData.getQueryParams()));

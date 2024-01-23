@@ -11,8 +11,8 @@ public class VerifyUser {
     private static final String SUPPORT_TEXT = "To keep ReqRes free, contributions towards server costs are appreciated!";
     private static final String DATE_REGEX = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}Z$";
 
-    public static ResponseConsequence responseGetUser() {
-        return ResponseConsequence.seeThatResponse("Validate Fields Get User",
+    public static ResponseConsequence responseGetSingleUser() {
+        return ResponseConsequence.seeThatResponse("Validate Fields Get Single User",
                 validateResponse -> validateResponse
                         .body("data.id", equalTo(Integer.parseInt(TestData.getTestData().get("id"))))
                         .body("data.email", equalTo(TestData.getTestData().get("email")))
@@ -31,6 +31,35 @@ public class VerifyUser {
                         .body("job", equalTo(TestData.getBodyData().get("job")))
                         .body("id", not(emptyString()))
                         .body("createdAt", matchesRegex(DATE_REGEX))
+        );
+    }
+
+    public static ResponseConsequence responseGetUser() {
+        return ResponseConsequence.seeThatResponse("Validate Fields Get User",
+                validateResponse -> validateResponse
+                        .body("page", equalTo(Integer.parseInt(TestData.getQueryParams().get("page"))))
+                        .body("per_page", equalTo(Integer.parseInt(TestData.getTestData().get("per_page"))))
+                        .body("total", equalTo(Integer.parseInt(TestData.getTestData().get("total"))))
+                        .body("total_pages", equalTo(Integer.parseInt(TestData.getTestData().get("total_pages"))))
+                        .body("data", hasSize(Integer.parseInt(TestData.getTestData().get("per_page"))))
+                        .body("support.url", equalTo(SUPPORT_URL))
+                        .body("support.text", equalTo(SUPPORT_TEXT))
+        );
+    }
+
+    public static ResponseConsequence responsePutUser() {
+        return ResponseConsequence.seeThatResponse("Validate Fields Put User",
+                validateResponse -> validateResponse
+                        .body("name", equalTo(TestData.getBodyData().get("name")))
+                        .body("job", equalTo(TestData.getBodyData().get("job")))
+                        .body("updatedAt", matchesRegex(DATE_REGEX))
+        );
+    }
+
+    public static ResponseConsequence responseUserIsEmpty() {
+        return ResponseConsequence.seeThatResponse("Validate Response User is empty",
+                validateResponse -> validateResponse
+                        .body(is(emptyOrNullString()))
         );
     }
 }

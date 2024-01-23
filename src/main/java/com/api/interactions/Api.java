@@ -46,8 +46,8 @@ public class Api implements Interaction {
         return Tasks.instrumented(Api.class, baseUrl, resource, POST, headers, body, new HashMap<>(), new HashMap<>());
     }
 
-    public static Api put(String baseUrl, String resource, Map<String, String> headers, String body) {
-        return Tasks.instrumented(Api.class, baseUrl, resource, PUT, headers, body, new HashMap<>(), new HashMap<>());
+    public static Api put(String baseUrl, String resource, Map<String, String> headers, Map<String, String> pathParams, String body) {
+        return Tasks.instrumented(Api.class, baseUrl, resource, PUT, headers, body, pathParams, new HashMap<>());
     }
 
     public static Api delete(String baseUrl, String resource, Map<String, String> headers, Map<String, String> pathParams, Map<String, String> queryParams) {
@@ -78,6 +78,7 @@ public class Api implements Interaction {
                     Put.to(resource).with(requestSpecification -> requestSpecification
                             .contentType(ContentType.JSON)
                             .headers(headers)
+                            .pathParams(pathParams)
                             .body(body)
                             .relaxedHTTPSValidation().log().all())
             );
@@ -85,6 +86,8 @@ public class Api implements Interaction {
                     Delete.from(resource).with(requestSpecification -> requestSpecification
                             .contentType(ContentType.JSON)
                             .headers(headers)
+                            .pathParams(pathParams)
+                            .queryParams(queryParams)
                             .relaxedHTTPSValidation().log().all())
             );
             default -> throw new AutomationException("Unsupported HTTP method: " + method);

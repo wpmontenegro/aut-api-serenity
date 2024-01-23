@@ -8,10 +8,10 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"json:target/cucumber/cucumber.json"},
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        features = "src/test/resources/features/postUserExample.feature",
+        features = "src/test/resources/features",
         glue = {"com.bdd.stepsdefinitions", "com.bdd.hooks"},
         stepNotifications = true
 )
 
-public class TestPostUserRunner {
+public class TestUserRunner {
 }

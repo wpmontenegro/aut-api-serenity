@@ -10,14 +10,29 @@ import io.cucumber.java.en.When;
 import java.util.List;
 import java.util.Map;
 
-import static com.bdd.stepsdefinitions.CommonStepDefinition.callGetService;
-import static com.bdd.stepsdefinitions.CommonStepDefinition.callPostService;
+import static com.bdd.stepsdefinitions.CommonStepDefinition.*;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
 public class UserStepDefinition {
 
-    @Given("I load customer information")
-    public void iLoadCustomerInformation(List<Map<String, String>> testDataList) {
+    @Given("I load user information")
+    public void iLoadUserInformation(List<Map<String, String>> testDataList) {
+        theActorInTheSpotlight().wasAbleTo(Load.pathParams(testDataList));
+    }
+
+    @When("I make the single user query")
+    public void iMakeTheSingleUserQuery() {
+        callGetService("SINGLE_USER");
+    }
+
+    @And("I validate fields of get single user response")
+    public void iValidateFieldsOfGetSingleUserResponse(List<Map<String, String>> testDataList) {
+        theActorInTheSpotlight().wasAbleTo(Load.testData(testDataList));
+        theActorInTheSpotlight().should(VerifyUser.responseGetSingleUser());
+    }
+
+    @Given("I load page information")
+    public void iLoadPageInformation(List<Map<String, String>> testDataList) {
         theActorInTheSpotlight().wasAbleTo(Load.queryParams(testDataList));
     }
 
@@ -46,5 +61,25 @@ public class UserStepDefinition {
     public void iValidateFieldsOfPostUserResponse() {
         theActorInTheSpotlight().should(VerifyUser.responsePostUser());
         theActorInTheSpotlight().attemptsTo(Save.userId());
+    }
+
+    @When("I make the update of user")
+    public void iMakeTheUpdateOfUser() {
+        callPutService("SINGLE_USER");
+    }
+
+    @And("I validate fields of put user response")
+    public void iValidateFieldsOfPutUserResponse() {
+        theActorInTheSpotlight().should(VerifyUser.responsePutUser());
+    }
+
+    @When("I make the delete of user")
+    public void iMakeTheDeleteOfUser() {
+        callDeleteService("SINGLE_USER");
+    }
+
+    @And("I validate body is empty")
+    public void iValidateBodyIsEmpty() {
+        theActorInTheSpotlight().should(VerifyUser.responseUserIsEmpty());
     }
 }
