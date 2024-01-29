@@ -5,7 +5,7 @@ import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 
-public class Save {
+public class SaveUser {
 
     public static Performable userId() {
         return Task.where(actor -> {

@@ -2,7 +2,7 @@ package com.bdd.stepsdefinitions;
 
 import com.api.questions.VerifyUser;
 import com.api.tasks.Load;
-import com.api.tasks.Save;
+import com.api.tasks.SaveUser;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
@@ -60,7 +60,7 @@ public class UserStepDefinition {
     @And("I validate fields of post user response")
     public void iValidateFieldsOfPostUserResponse() {
         theActorInTheSpotlight().should(VerifyUser.responsePostUser());
-        theActorInTheSpotlight().attemptsTo(Save.userId());
+        theActorInTheSpotlight().attemptsTo(SaveUser.userId());
     }
 
     @When("I make the update of user")
