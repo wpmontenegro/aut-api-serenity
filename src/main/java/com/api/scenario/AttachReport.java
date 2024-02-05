@@ -5,7 +5,6 @@ import io.restassured.specification.FilterableRequestSpecification;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
-import net.serenitybdd.screenplay.Performable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +14,7 @@ public class AttachReport implements Interaction {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AttachReport.class);
 
-    public static Performable loadEvidence() {
+    public static AttachReport loadEvidence() {
         return instrumented(AttachReport.class);
     }
 
