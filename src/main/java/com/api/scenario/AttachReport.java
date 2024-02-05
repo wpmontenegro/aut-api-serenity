@@ -1,5 +1,8 @@
 package com.api.scenario;
 
+import io.restassured.response.Response;
+import io.restassured.specification.FilterableRequestSpecification;
+import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Performable;
@@ -12,16 +15,8 @@ public class AttachReport implements Interaction {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AttachReport.class);
 
-    private final String requestDetails;
-    private final String responseDetails;
-
-    public AttachReport(String requestDetails, String responseDetails) {
-        this.requestDetails = requestDetails;
-        this.responseDetails = responseDetails;
-    }
-
-    public static Performable loadEvidence(String requestDetails, String responseDetails) {
-        return instrumented(AttachReport.class, requestDetails, responseDetails);
+    public static Performable loadEvidence() {
+        return instrumented(AttachReport.class);
     }
 
     @Override
@@ -29,7 +24,36 @@ public class AttachReport implements Interaction {
         if (ManageScenario.getScenario() == null)
             throw new IllegalArgumentException("There is no scenario configured");
 
+        FilterableRequestSpecification requestSpecification = (FilterableRequestSpecification) SerenityRest.when();
+        Response response = SerenityRest.lastResponse();
+
+        String separator = "----------------------------------------------------------------";
         String scenarioDetail = "SCENARIO: " + ManageScenario.getScenario().getName() + "\n";
+        String requestDetails = "REQUEST" + "\n"
+                + "URL: " + requestSpecification.getURI() + "\n"
+                + "Method: " + requestSpecification.getMethod() + "\n"
+                + separator + "\n"
+                + "REQUEST HEADERS" + "\n"
+                + requestSpecification.getHeaders() + "\n"
+                + separator + "\n"
+                + "REQUEST QUERY PARAMETERS" + "\n"
+                + requestSpecification.getQueryParams() + "\n"
+                + separator + "\n"
+                + "REQUEST PATH PARAMETERS" + "\n"
+                + requestSpecification.getPathParams() + "\n"
+                + separator + "\n"
+                + "REQUEST BODY" + "\n"
+                + requestSpecification.getBody() + "\n";
+        String responseDetails = "RESPONSE" + "\n"
+                + "Status Code: " + response.getStatusCode() + "\n"
+                + "Content Type: " + response.getContentType() + "\n"
+                + separator + "\n"
+                + "RESPONSE HEADERS " + "\n"
+                + response.getHeaders() + "\n"
+                + separator + "\n"
+                + "RESPONSE BODY" + "\n"
+                + response.getBody().prettyPrint() + "\n";
+
         String evidence = scenarioDetail + "\n"
                 + requestDetails + "\n"
                 + responseDetails;

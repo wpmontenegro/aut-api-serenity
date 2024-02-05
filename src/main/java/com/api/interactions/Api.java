@@ -92,37 +92,6 @@ public class Api implements Interaction {
             );
             default -> throw new AutomationException("Unsupported HTTP method: " + method);
         }
-        actor.attemptsTo(AttachReport.loadEvidence(getRequestDetails(), getResponseDetails()));
-    }
-
-    private String getRequestDetails() {
-        String separator = "----------------------------------------------------------------";
-        return "REQUEST" + "\n"
-                + "Url: " + baseUrl + resource + "\n"
-                + separator + "\n"
-                + "REQUEST HEADERS" + "\n"
-                + headers.toString() + "\n"
-                + separator + "\n"
-                + "REQUEST QUERY PARAMETERS" + "\n"
-                + queryParams.toString() + "\n"
-                + separator + "\n"
-                + "REQUEST PATH PARAMETERS" + "\n"
-                + pathParams + "\n"
-                + separator + "\n"
-                + "REQUEST BODY" + "\n"
-                + body + "\n";
-    }
-
-    private String getResponseDetails() {
-        String separator = "----------------------------------------------------------------";
-        return "RESPONSE" + "\n"
-                + "Status Code: " + SerenityRest.lastResponse().getStatusCode() + "\n"
-                + "Content Type: " + SerenityRest.lastResponse().getContentType() + "\n"
-                + separator + "\n"
-                + "RESPONSE HEADERS " + "\n"
-                + SerenityRest.lastResponse().getHeaders() + "\n"
-                + separator + "\n"
-                + "RESPONSE BODY" + "\n"
-                + SerenityRest.lastResponse().getBody().prettyPrint() + "\n";
+        actor.attemptsTo(AttachReport.loadEvidence());
     }
 }
