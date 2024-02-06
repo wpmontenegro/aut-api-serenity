@@ -57,6 +57,6 @@ public class AttachReport implements Interaction {
                 + requestDetails + "\n"
                 + responseDetails;
         LOGGER.info("Attaching evidence into Cucumber Report");
-        ManageScenario.getScenario().attach(evidence.getBytes(), "text/json", "evidence");
+        ManageScenario.getScenario().attach(evidence.getBytes(), "text/plain", "evidence");
     }
 }
