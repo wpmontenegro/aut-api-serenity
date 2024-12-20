@@ -7,8 +7,8 @@ import static org.hamcrest.Matchers.*;
 
 public class VerifyUser {
 
-    private static final String SUPPORT_URL = "https://reqres.in/#support-heading";
-    private static final String SUPPORT_TEXT = "To keep ReqRes free, contributions towards server costs are appreciated!";
+    private static final String SUPPORT_URL = "https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral";
+    private static final String SUPPORT_TEXT = "Tired of writing endless social media content? Let Content Caddy generate it for you.";
     private static final String DATE_REGEX = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}Z$";
 
     public static ResponseConsequence responseGetSingleUser() {

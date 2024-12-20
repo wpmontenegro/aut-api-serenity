@@ -1,11 +1,11 @@
 buildscript {
     ext {
-        serenityVersion = '4.0.30'
-        slf4jVersion = '2.0.10'
-        restAssuredVersion = '5.4.0'
-        jdbiVersion = '3.43.0'
-        lombokVersion = '1.18.30'
-        postgresqlVersion = '42.7.1'
+        serenityVersion = '4.2.8'
+        slf4jVersion = '2.0.16'
+        restAssuredVersion = '5.5.0'
+        jdbiVersion = '3.47.0'
+        lombokVersion = '1.18.36'
+        postgresqlVersion = '42.7.4'
     }
     repositories {
         mavenCentral()
