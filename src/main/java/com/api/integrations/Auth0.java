@@ -16,6 +16,7 @@ public class Auth0 {
     public static final String PATH_EMAIL = "/api/v2/users-by-email";
     public static final String TEMPLATE_GET_TOKEN_AUTH0 = "GET_TOKEN_AUTH0";
     public static final String FORMAT_AUTHENTICATOR = "%s %s";
+    public static final String AUTHORIZATION = "authorization";
 
     private static Performable getAccessToken() {
         return Task.where(actor -> {
@@ -28,16 +29,15 @@ public class Auth0 {
             actor.attemptsTo(Api.post(AUTH0_URL, PATH_TOKEN, new HashMap<>(), body));
             String accessToken = SerenityRest.lastResponse().body().jsonPath().get("access_token").toString();
             String tokenType =  SerenityRest.lastResponse().body().jsonPath().get("token_type").toString();
-            actor.remember("authorization", String.format(FORMAT_AUTHENTICATOR, tokenType, accessToken));
+            actor.remember(AUTHORIZATION, String.format(FORMAT_AUTHENTICATOR, tokenType, accessToken));
         });
     }
 
     public static Performable getUserByEmail(String email) {
         return Task.where(actor -> {
             actor.attemptsTo(getAccessToken());
-            String authorization = actor.recall("authorization");
             Map<String, String> headers = new HashMap<>();
-            headers.put("authorization", authorization);
+            headers.put(AUTHORIZATION, actor.recall(AUTHORIZATION));
             Map<String, String> queryParams = new HashMap<>();
             queryParams.put("email", email);
             actor.attemptsTo(Api.get(AUTH0_URL, PATH_EMAIL, headers, new HashMap<>(), queryParams));

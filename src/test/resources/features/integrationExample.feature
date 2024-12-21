@@ -1,7 +1,7 @@
 @THIRD_PARTIES
 Feature: Api Integration Example
 
-  @AUHT0 @POST
+  @AUTH0 @POST
   Scenario: Create user with Auth0 as intermediate
     Given I load data user to create
       | email                         | job        |
