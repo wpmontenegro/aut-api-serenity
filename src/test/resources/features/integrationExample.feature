@@ -12,3 +12,14 @@ Feature: Api Integration Example
     And I validate schema response "PostUserSchema"
     And I validate fields of post user response
 
+  @MAILSAC @POST
+  Scenario: Create user with Mailsac as intermediate
+    Given I load data user to create
+      | email            | job    |
+      | pazd@mailsac.com | Tester |
+    And I get the message in mailsac
+    When I make the creation of user with message
+    Then I should see the status code 201
+    And I validate schema response "PostUserSchema"
+    And I validate fields of post user response
+
