@@ -3,6 +3,7 @@ package com.api.integrations;
 import com.api.interactions.Api;
 import com.api.models.TestData;
 import com.api.utils.TemplateUtil;
+import io.restassured.path.json.JsonPath;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
@@ -15,7 +16,7 @@ public class Auth0 {
     public static final String PATH_TOKEN = "/oauth/token";
     public static final String PATH_EMAIL = "/api/v2/users-by-email";
     public static final String TEMPLATE_GET_TOKEN_AUTH0 = "GET_TOKEN_AUTH0";
-    public static final String FORMAT_AUTHENTICATOR = "%s %s";
+    public static final String FORMAT_AUTHORIZATION = "%s %s";
     public static final String AUTHORIZATION = "authorization";
 
     private static Performable getAccessToken() {
@@ -27,9 +28,10 @@ public class Auth0 {
             credentials.put("grantType", "client_credentials");
             String body = TemplateUtil.mergeWithFieldsFrom(TEMPLATE_GET_TOKEN_AUTH0, credentials);
             actor.attemptsTo(Api.post(AUTH0_URL, PATH_TOKEN, new HashMap<>(), body));
-            String accessToken = SerenityRest.lastResponse().body().jsonPath().get("access_token").toString();
-            String tokenType =  SerenityRest.lastResponse().body().jsonPath().get("token_type").toString();
-            actor.remember(AUTHORIZATION, String.format(FORMAT_AUTHENTICATOR, tokenType, accessToken));
+            JsonPath lastResponse = SerenityRest.lastResponse().body().jsonPath();
+            String accessToken = lastResponse.get("access_token").toString();
+            String tokenType =  lastResponse.get("token_type").toString();
+            actor.remember(AUTHORIZATION, String.format(FORMAT_AUTHORIZATION, tokenType, accessToken));
         });
     }
 

@@ -12,10 +12,10 @@ import java.util.Map;
 
 import static com.api.utils.Constants.EMPTY;
 
-public class GetUser implements Task {
+public class GetUserName implements Task {
 
-    public static GetUser byEmailInAuth0() {
-        return Tasks.instrumented(GetUser.class);
+    public static GetUserName byEmailInAuth0() {
+        return Tasks.instrumented(GetUserName.class);
     }
 
     @Override
