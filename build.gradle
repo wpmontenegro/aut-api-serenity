@@ -41,7 +41,7 @@ dependencies {
     implementation "org.postgresql:postgresql:${postgresqlVersion}"
 }
 
-test {
+tasks.test {
     systemProperty 'environment', System.properties['environment']
 }
 
