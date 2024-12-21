@@ -22,7 +22,9 @@ public class Hook {
 
         TestData.clear();
         String apiBaseUrl = EnvironmentSpecificConfiguration.from(environmentVariables).getProperty("base.url");
-        TestData.getTestData().put("apiBase", apiBaseUrl);
+        String auth0Url = EnvironmentSpecificConfiguration.from(environmentVariables).getProperty("auth0.url");
+        TestData.getTestData().put("apiBaseUrl", apiBaseUrl);
+        TestData.getTestData().put("auth0Url", auth0Url);
     }
 
     @Before(order = 2)
