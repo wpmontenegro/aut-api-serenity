@@ -21,7 +21,7 @@ public class GetUserName implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         String email = TestData.getBodyData().get("email");
-        actor.attemptsTo(Auth0.getUserByEmail(email));
+        actor.attemptsTo(Auth0.getUsersByEmail(email));
         List<Map<String, String>> listOfUsers = SerenityRest.lastResponse().body().jsonPath().getList(EMPTY);
         if (!listOfUsers.isEmpty()) TestData.getBodyData().put("name", listOfUsers.get(0).get("nickname"));
     }
