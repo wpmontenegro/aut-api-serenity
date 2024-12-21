@@ -82,4 +82,9 @@ public class UserStepDefinition {
     public void iValidateBodyIsEmpty() {
         theActorInTheSpotlight().should(VerifyUser.responseUserIsEmpty());
     }
+
+    @When("I make the creation of user with message")
+    public void iMakeTheCreationOfUserWithMessage() {
+        callPostService("USERS_MESSAGE");
+    }
 }

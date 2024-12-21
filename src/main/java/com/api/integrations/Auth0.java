@@ -35,7 +35,7 @@ public class Auth0 {
         });
     }
 
-    public static Performable getUsersByEmail(String email) {
+    public static Performable searchUsersByEmail(String email) {
         return Task.where(actor -> {
             actor.attemptsTo(getAccessToken());
             Map<String, String> headers = new HashMap<>();
