@@ -24,7 +24,7 @@ Feature: Api Integration Example
     And I validate fields of post user response
 
   @CSV @POST
-  Scenario: Create user with Mailsac as intermediate
+  Scenario: Create user with data from CSV
     Given I load data from csv
     When I make the creation of user
     Then I should see the status code 201
