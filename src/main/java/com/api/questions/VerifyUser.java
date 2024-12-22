@@ -2,6 +2,10 @@ package com.api.questions;
 
 import com.api.models.TestData;
 import net.serenitybdd.screenplay.rest.questions.ResponseConsequence;
+import org.assertj.core.api.Assertions;
+
+import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.Matchers.*;
 
@@ -61,5 +65,16 @@ public class VerifyUser {
                 validateResponse -> validateResponse
                         .body(is(emptyOrNullString()))
         );
+    }
+
+    public static ResponseConsequence responseIdOfEachUserFromGetUser() {
+        return ResponseConsequence.seeThatResponse("Validate id of each user from Get User",
+                validateResponse -> {
+                    List<Map<String, Object>> users = validateResponse.extract().path("data");
+                    boolean isMatch = users.stream().allMatch(
+                            user -> user.get("id").toString().matches("\\d+")
+                    );
+                    Assertions.assertThat(isMatch).isTrue();
+                });
     }
 }

@@ -87,4 +87,9 @@ public class UserStepDefinition {
     public void iMakeTheCreationOfUserWithMessage() {
         callPostService("USERS_MESSAGE");
     }
+
+    @And("I validate each user of get user response")
+    public void iValidateEachUserOfGetUserResponse() {
+        theActorInTheSpotlight().should(VerifyUser.responseIdOfEachUserFromGetUser());
+    }
 }

@@ -33,6 +33,7 @@ dependencies {
     implementation "net.serenity-bdd:serenity-rest-assured:${serenityVersion}"
     implementation "net.serenity-bdd:serenity-screenplay-rest:${serenityVersion}"
     implementation "net.serenity-bdd:serenity-cucumber:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-ensure:${serenityVersion}"
     implementation "org.slf4j:slf4j-simple:${slf4jVersion}"
     implementation "io.rest-assured:json-schema-validator:${restAssuredVersion}"
     implementation "org.jdbi:jdbi3-core:${jdbiVersion}"
