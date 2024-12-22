@@ -2,6 +2,7 @@ package com.bdd.stepsdefinitions;
 
 import com.api.questions.VerifyUser;
 import com.api.tasks.Load;
+import com.api.tasks.LoadUser;
 import com.api.tasks.SaveUser;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -91,5 +92,10 @@ public class UserStepDefinition {
     @And("I validate each user of get user response")
     public void iValidateEachUserOfGetUserResponse() {
         theActorInTheSpotlight().should(VerifyUser.responseIdOfEachUserFromGetUser());
+    }
+
+    @Given("I load data from csv")
+    public void iLoadDataFromCsv() {
+        theActorInTheSpotlight().wasAbleTo(LoadUser.fromCSV());
     }
 }

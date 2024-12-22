@@ -6,4 +6,5 @@ public class Constants {
     public static String TEMPLATES_PATH = "src/test/resources/templates";
     public static String JSON_FORMAT = "%s.json";
     public static String EMPTY = "";
+    public static final String RUTA_DATA_CSV = "data/%s";
 }
