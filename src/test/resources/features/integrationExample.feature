@@ -23,3 +23,10 @@ Feature: Api Integration Example
     And I validate schema response "PostUserSchema"
     And I validate fields of post user response
 
+  @CSV @POST
+  Scenario: Create user with Mailsac as intermediate
+    Given I load data from csv
+    When I make the creation of user
+    Then I should see the status code 201
+    And I validate schema response "PostUserSchema"
+    And I validate fields of post user response
