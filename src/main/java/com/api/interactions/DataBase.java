@@ -1,6 +1,8 @@
 package com.api.interactions;
 
 import com.api.exceptions.AutomationException;
+import com.api.scenario.AttachLogDB;
+import net.serenitybdd.screenplay.actors.OnStage;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.Query;
@@ -45,6 +47,11 @@ public class DataBase {
             }
         } catch (Exception e) {
             LOGGER.error("An error occurred while performing the query: {}", e.getMessage());
+        }
+        if (queryResult != null) {
+            OnStage.theActorInTheSpotlight().attemptsTo(
+                    AttachLogDB.loadEvidence(nameDB, nameQuery, queryResult.toString())
+            );
         }
         return queryResult;
     }
