@@ -24,6 +24,7 @@ Feature: User Management Example
     And I validate fields of get user response
       | per_page | total | total_pages |
       | 6        | 12    | 2           |
+    And I validate each user of get user response
 
   @POST
   Scenario Outline: Create user with response success
