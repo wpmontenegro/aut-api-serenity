@@ -10,6 +10,7 @@ import org.jdbi.v3.core.statement.Update;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -26,8 +27,9 @@ public class DataBase {
             throw new AutomationException("Missing required environment variables for database connection");
         }
         try {
-            LOGGER.debug("Connecting to database with URL: {}", String.format(urlTemplate, nameDB));
-            return Jdbi.create(String.format(urlTemplate, nameDB), user, password);
+            String url = String.format(urlTemplate, nameDB);
+            LOGGER.debug("Connecting to database with URL: {}", url);
+            return Jdbi.create(url, user, password);
         } catch (Exception e) {
             throw new AutomationException("An error occurred while connecting to the database", e);
         }
@@ -68,5 +70,31 @@ public class DataBase {
             LOGGER.error("An error occurred while performing the update: {}", e.getMessage());
         }
         return rowCounter;
+    }
+
+    public static <T> T executeQueryWithList(String nameDB,
+                                             String nameQuery,
+                                             String listParamName,
+                                             List<?> listParamValues,
+                                             Class<T> className) {
+        T queryResult = null;
+        try (Handle handle = openConnection(nameDB).open()) {
+            try (Query query = handle.createQuery(nameQuery).bindList(listParamName, listParamValues)) {
+                Optional<T> optionalResult = query.mapToBean(className).findOne();
+                queryResult = optionalResult.orElseThrow(
+                        () -> new AutomationException("The query returned no results")
+                );
+            }
+        } catch (Exception e) {
+            LOGGER.error("An error occurred while performing the query with list: {}", e.getMessage());
+        }
+
+        if (queryResult != null) {
+            OnStage.theActorInTheSpotlight().attemptsTo(
+                    AttachLogDB.loadEvidence(nameDB, nameQuery, queryResult.toString())
+            );
+        }
+
+        return queryResult;
     }
 }
