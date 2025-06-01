@@ -2,6 +2,7 @@ package com.bdd.stepsdefinitions;
 
 import com.api.questions.VerifyUser;
 import com.api.tasks.Load;
+import com.api.tasks.LoadCredentials;
 import com.api.tasks.LoadUser;
 import com.api.tasks.SaveUser;
 import io.cucumber.java.en.And;
@@ -97,5 +98,10 @@ public class UserStepDefinition {
     @Given("I load data from csv")
     public void iLoadDataFromCsv() {
         theActorInTheSpotlight().wasAbleTo(LoadUser.fromCSV());
+    }
+
+    @Given("I load the API key to authenticate")
+    public void iLoadTheAPIKeyToAuthenticate() {
+        theActorInTheSpotlight().wasAbleTo(LoadCredentials.toAuthenticate());
     }
 }
