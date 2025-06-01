@@ -1,6 +1,9 @@
 @REQRES
 Feature: User Management Example
 
+  Background: Load authentication credentials
+    Given I load the API key to authenticate
+
   @GET @PATH_PARAMS
   Scenario: Get information from an individual user with response success
     Given I load user information

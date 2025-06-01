@@ -1,6 +1,9 @@
 @THIRD_PARTIES
 Feature: Api Integration Example
 
+  Background: Load authentication credentials
+    Given I load the API key to authenticate
+
   @AUTH0 @POST
   Scenario: Create user with Auth0 as intermediate
     Given I load data user to create
