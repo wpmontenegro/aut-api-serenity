@@ -44,7 +44,7 @@ gradlew build -x test
 
 ### Pruebas locales
 
-1. Establezca las **Credenciales de BrowserStack/SauceLabs** como variables de entorno:
+1. Establezca las **Credenciales de Auht0 y Mailsac** como variables de entorno:
 ```
 export AUTH0_CLIENT_ID=id_cliente_auth0
 export AUTH0_CLIENT_SECRET=secret_cliente_auth0
@@ -78,6 +78,8 @@ El archivo se encuentran en:
 src/test/resources/
 ├── serenity.conf  # Configuraciones generales para ejecución en diferentes ambientes
 ```
+
+Se debe setear la url del tenant de Auth0 en la variable `auth0.url` propio dentro de este archivo
 
 ## 📊 Reportes de Pruebas
 
