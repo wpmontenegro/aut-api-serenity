@@ -79,7 +79,7 @@ src/test/resources/
 ├── serenity.conf  # Configuraciones generales para ejecución en diferentes ambientes
 ```
 
-Se debe setear la url del tenant de Auth0 en la variable `auth0.url` propio dentro de este archivo
+Se debe setear la url del tenant propio de Auth0 en la variable `auth0.url` dentro de este archivo
 
 ## 📊 Reportes de Pruebas
 
