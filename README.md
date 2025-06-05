@@ -1,41 +1,99 @@
 # Serenity-BDD API Automation Framework
 
-Framework de automatización de pruebas para APIs REST utilizando Serenity BDD, implementado con el patrón Screenplay. Este proyecto está diseñado para facilitar la escritura de pruebas legibles, mantenibles y escalables, aprovechando las capacidades de Serenity.
+Framework de automatización de pruebas para APIs REST utilizando Serenity BDD, implementado con el patrón Screenplay.
+Este proyecto está diseñado para facilitar la escritura de pruebas legibles, mantenibles y escalables, aprovechando las capacidades de Serenity.
 
-## 🏛️ Arquitectura
+## 🚀 Características
 
-Este proyecto está construido con Serenity-BDD y Cucumber.
+- Automatización de pruebas API usando Serenity-BDD
+- Estructura basada en Screenplay
+- Integración con Cucumber y lenguaje Gherkin
+- Manejo de logs y reportes automáticos
+- Ejecución con Gradle y JUnit
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Lenguaje de programación**: Java
+- **Frameworks de automatización**:
+    - [Serenity BDD](https://serenity-bdd.github.io/)
+    - [Cucumber](https://cucumber.io/)
+    - [JUnit](https://junit.org/)
+- **Herramientas adicionales**:
+    - [Gradle](https://gradle.org/)
+
+## 📂 Arquitectura del Proyecto
 
 ![Architecture](docs/arq-aut-api-serenity.jpg)
 
----
+## 📋 Instalación
 
-## 🏗️ Tecnologías Utilizadas
-
-* Java 17 
-* Serenity BDD 
-* RestAssured 
-* Cucumber 
-* Gradle 
-* Hamcrest Matchers
-
-## 🚀 Ejecución de Pruebas
-
-### Comando para ejecución
-
-Corre el siguiente comando en la terminal:
+### Clonar el Repositorio
 
 ```
-gradlew clean test --tests "*.TestUserRunner" -Denvironment={ENV}
+git clone https://github.com/wpmontenegro/aut-api-serenity.git
+cd aut-api-serenity
 ```
 
-### Parámetros aceptados
+### Instalación de Dependencias
 
-`environment` (optional):
+```
+gradlew build -x test
+```
 
-Especifica el ambiente a ejecutar las pruebas, depende del archivo `serenity.conf`.
+## ▶️ Ejecución de pruebas
 
-## 📌 Notas Adicionales
+### Pruebas locales
 
-* El proyecto está configurado para utilizar Cucumber como herramienta de definición de pruebas en lenguaje natural. 
-* Se recomienda revisar y ajustar los archivos de configuración (`serenity.properties`, `build.gradle`) según las necesidades específicas del entorno de desarrollo y ejecución.
+1. Establezca las **Credenciales de Auht0 y Mailsac** como variables de entorno:
+```
+export AUTH0_CLIENT_ID=id_cliente_auth0
+export AUTH0_CLIENT_SECRET=secret_cliente_auth0
+export MAILSAC_API_KEY=api_key_mailsac
+export REQRES_API_KEY=api_key_reqres
+```
+2. Ejecutar las pruebas:
+```
+gradlew clean test -Denvironment={ENV}
+```
+
+## 🔧 Configuración
+
+### Parámetros
+
+`environment` (requerido):
+
+Especifica el ambiente donde se ejecutaran las pruebas
+
+```
+dev (para ambiente DEV)
+qa (para ambiente QA)
+```
+
+### Serenity Config
+
+Este proyecto utiliza `.serenity.conf` para gestionar configuraciones clave y facilitar la ejecución en distintos entornos (dev, qa).
+El archivo se encuentran en:
+
+```
+src/test/resources/
+├── serenity.conf  # Configuraciones generales para ejecución en diferentes ambientes
+```
+
+Se debe setear la url del tenant propio de Auth0 en la variable `auth0.url` dentro de este archivo
+
+## 📊 Reportes de Pruebas
+
+Los reportes de las ejecuciones se generan automáticamente en formato HTML y se almacenan en la carpeta `target/cucumber-reports/`.
+Para visualizar un reporte:
+
+```
+open target/site/serenity/index.html
+```
+
+## 📬 Contacto
+
+Para preguntas o sugerencias, puedes contactarme a través de:
+
+- Correo electrónico: wmontenegro@outlook.com.pe
+- LinkedIn: [**wmontenegro**](https://www.linkedin.com/in/wmontenegro)
+- GitHub: [**wpmontenegro**](https://github.com/wpmontenegro)
