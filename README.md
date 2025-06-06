@@ -83,8 +83,8 @@ Se debe setear la url del tenant propio de Auth0 en la variable `auth0.url` dent
 
 ## 📊 Reportes de Pruebas
 
-Los reportes de las ejecuciones se generan automáticamente en formato HTML y se almacenan en la carpeta `target/cucumber-reports/`.
-Para visualizar un reporte:
+Los reportes de las ejecuciones se generan automáticamente en formato HTML y se almacenan en la carpeta `target/site/serenity`.
+Para visualizar el reporte:
 
 ```
 open target/site/serenity/index.html
