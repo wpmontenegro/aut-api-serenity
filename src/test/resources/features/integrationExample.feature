@@ -18,8 +18,8 @@ Feature: Api Integration Example
   @MAILSAC @POST
   Scenario: Create user with Mailsac as intermediate
     Given I load data user to create
-      | email            | job    |
-      | pazd@mailsac.com | Tester |
+      | email              | job    |
+      | tester@mailsac.com | Tester |
     And I get the message in mailsac
     When I make the creation of user with message
     Then I should see the status code 201
